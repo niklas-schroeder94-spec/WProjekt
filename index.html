@@ -13,7 +13,7 @@
     <div class="project-title">Barrierepapier — Konzept 1</div>
     <nav class="dot-nav" id="dotNav" aria-label="Slide Navigation"></nav>
     <div class="nav-actions">
-      <button id="prevBtn" class="pill">← Zurück</button>
+      <button id="themeBtn" class="pill" aria-pressed="false">☀︎ Light</button><button id="prevBtn" class="pill">← Zurück</button>
       <button id="nextBtn" class="pill">Weiter →</button>
     </div>
   </header>
@@ -74,6 +74,14 @@
       <details><summary>CAPEX-Aufschlüsselung (Top-Positionen)</summary><table><tr><td>Biomassekraftwerk</td><td>124,4 Mio. €</td></tr><tr><td>Papiermaschine (Umbau)</td><td>83,1 Mio. €</td></tr><tr><td>Stoffaufbereitung</td><td>32,9 Mio. €</td></tr><tr><td>Streichmassenaufbereitung</td><td>8,0 Mio. €</td></tr><tr><th>Gesamt</th><th>248,4 Mio. €</th></tr></table></details>
       <details><summary>LCOE Biomassekraftwerk</summary><div class="kpi-grid two"><article class="card"><p class="kpi">40,3</p><p class="meta">Szenario A €/MWh (−50 % vs. Markt)</p></article><article class="card"><p class="kpi">53,3</p><p class="meta">Szenario B €/MWh (−37 % vs. Markt)</p></article></div><p class="meta">Marktpreis Referenz: 80–100 €/MWh · NPV Szenario A: +209 Mio. €</p></details>
       <details><summary>Jahresergebnis (Auswahl)</summary><table><tr><th>Jahr</th><th>EBITDA</th><th>Cashflow</th><th>Kumuliert</th></tr><tr><td>1</td><td>−16,0</td><td>−16,0</td><td>−264</td></tr><tr><td>5</td><td>+27,5</td><td>+22,2</td><td>−174</td></tr><tr><td>10</td><td>+25,4</td><td>+20,8</td><td>−65</td></tr><tr><td>13</td><td>+24,5</td><td>+20,1</td><td>−4</td></tr><tr><td>15</td><td>+23,5</td><td>+19,4</td><td>+36</td></tr><tr><td>25</td><td>+17,1</td><td>+14,9</td><td>+207</td></tr></table></details>
+      
+      <div class="card configurator">
+        <h3>Live-Szenario-Konfigurator</h3>
+        <label>Energiepreis-Entwicklung: <span id="energyVal">0%</span><input id="energyRange" type="range" min="-30" max="30" value="0"/></label>
+        <label>CO₂-Zertifikatspreis: <span id="co2Val">150 €/t</span><input id="co2Range" type="range" min="50" max="300" value="150"/></label>
+        <label>Marktpreis Kunststoff-Referenz: <span id="marketVal">100%</span><input id="marketRange" type="range" min="70" max="140" value="100"/></label>
+      </div>
+
       <p class="so-what">Kernaussage: Break-even wird im Jahr 13 erreicht, danach skaliert der positive Cashflow robust.</p>
     </section>
 
@@ -99,6 +107,16 @@
         <article class="card"><p class="meta">50 g/m² gesamt</p><div class="layers"><div style="--h:8%;--c:rgba(37,99,235,.3)"><span class="layer-item" data-tip="Hydrophobie, Fettabweisung, Oberflächenhärte">Top Coat hydrophob · 0,8 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="MOH+O₂-Barriere durch dichte Polymermatrix">Barrierestrich oben · 4,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Porenfüller für homogene Schichtbildung">Primer oben · 2,0 g/m²</span></div><div style="--h:44%;--c:rgba(255,255,255,.08)"><span class="layer-item" data-tip="Trägerschicht AP 04.01.01 mit hoher Verfügbarkeit">Recyclingfaser · 38,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Haftvermittler zur Rückseitenstabilisierung">Primer unten · 2,0 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="Sauerstoffbarriere & Mineralölstopp auf Rückseite">Barrierestrich unten · 4,0 g/m²</span></div></div></article>
         <article class="card"><h3>Präzisionsbeschichtung ohne Kontakt</h3><p>Das Slot-Die-Verfahren trägt wasserbasierte Funktionsschichten berührungslos und hochpräzise auf. Geeignet für Biopolymer-Dispersionen wie PHA, Chitosan und PVOH — mit homogener Schichtdicke unter 1 μm Toleranz.</p><div class="link-buttons"><a class="pill" href="#">Slot-Die CFD Simulation (Case Study)</a><a class="pill" href="#">Basics of Slot Die Coating — next Machinery</a><a class="pill" href="#">Chitosan Slot-Die — Springer Nature</a></div></article>
       </div>
+      
+      <div class="card microscope-card">
+        <h3>Mikroskop-Ansicht (Deep Dive)</h3>
+        <p class="meta">Bewege die Lupe über die Papieroberfläche, um den 3D-Querschnitt der Barrierestruktur zu sehen.</p>
+        <div id="microscope" class="microscope">
+          <div class="paper-surface"></div>
+          <div id="lens" class="lens"><div class="zoom-layer"></div></div>
+        </div>
+      </div>
+
       <h3>Marktpositionierung — Top-3 Fahrweisen (85 % der Produktion)</h3>
       <div class="kpi-grid three"><article class="card"><p class="kpi">45 %</p><p class="meta">Standard Fett · KIT ≥ 10 | WVTR &lt; 150 | bis 200 °C</p><div class="bar"><span style="width:45%"></span></div></article><article class="card"><p class="kpi">25 %</p><p class="meta">Universal · KIT ≥ 10 | WVTR &lt; 80 | OTR &lt; 50</p><div class="bar"><span style="width:25%"></span></div></article><article class="card"><p class="kpi">10 %</p><p class="meta">Hochtemperatur · KIT ≥ 8 | bis 220 °C</p><div class="bar"><span style="width:10%"></span></div></article></div>
       <details><summary>Alle 6 Produktvarianten</summary><table><tr><th>Variante</th><th>Anteil</th><th>Fokus</th></tr><tr><td>Standard Fett</td><td>45%</td><td>Fettbarriere</td></tr><tr><td>Universal</td><td>25%</td><td>Fett + MOH</td></tr><tr><td>Hochtemperatur</td><td>10%</td><td>220°C Stabilität</td></tr><tr><td>MOH-konform</td><td>5%</td><td>MOSH/MOAH</td></tr><tr><td>Max Fett+MOH</td><td>5%</td><td>Kombi-Barriere</td></tr><tr><td>Hochbarriere OTR</td><td>5%</td><td>Sauerstoffbarriere</td></tr></table></details>
@@ -124,6 +142,14 @@
       <div class="card"><h3>Lieferkette</h3><p>BEKP Eukalyptus (Bestand): 🚢 9.000 km → 1,10 kg CO₂e/kg</p><p>Altpapier AP 04.01.01 (Umbau): 🚚 50 km → 0,09 kg CO₂e/kg</p><div class="distance"><div class="full"></div><div class="tiny"></div></div><p class="meta">−99,4 % Transportdistanz</p></div>
       <details><summary>Vollständige Wasserbilanz</summary><table><tr><td>Abwasser zur Behandlung</td><td>8,5 m³/t</td><td>Hauptabstrom</td></tr><tr><td>Verdunstung</td><td>2,2 m³/t</td><td>thermischer Verlust</td></tr><tr><td>Produktfeuchte</td><td>0,05 m³/t</td><td>Austrag im Produkt</td></tr><tr><td>Schlamm/Rejekte</td><td>0,5 m³/t</td><td>Faseraustrag</td></tr><tr><td>Kühlwasserverluste</td><td>0,75 m³/t</td><td>nicht rückführbar</td></tr><tr><td>Interne Kreislaufwasser</td><td>150 m³/t</td><td>direkt rückführbar</td></tr></table></details>
       <details><summary>Energiemanagement: Bestand vs. Umbau</summary><p>Bestand: Kohlestaubfeuerung, 80% externer Strom, Gas für Yankee-Hauben. Umbau: Biomassekraftwerk, 0% ext. Strom, kein Gas, 14 MW IR-Strahler.</p><p class="meta">CO₂-Einsparung Energie: ~50.000 t CO₂/a</p></details>
+      
+      <div class="card bend-test">
+        <h3>Physische Simulation: Biege-Test</h3>
+        <p class="meta">Ziehe den Regler: selbst bei starker Faltung bleibt die Barriere stabil.</p>
+        <input id="bendRange" type="range" min="0" max="100" value="0"/>
+        <div class="paper-wrap"><div id="paperSheet" class="paper-sheet">KIT-Integrität <span id="kitVal">100%</span></div></div>
+      </div>
+
       <p class="so-what">Kernaussage: Wasser- und Lieferketteneffekte liefern sofort messbaren Nachhaltigkeitsnutzen.</p>
     </section>
 

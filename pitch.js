@@ -3,11 +3,13 @@ const dotNav = document.getElementById('dotNav');
 const counter = document.getElementById('slideCounter');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
+const themeBtn = document.getElementById('themeBtn');
 const progressBar = document.getElementById('progressBar');
 
 let current = 0;
 let scenario = 'standard';
 const charts = {};
+const scenarioInputs = { energy: 0, co2: 150, market: 100 };
 
 const cashflowStandard = [-264,-241,-218,-196,-173,-151,-129,-107,-86,-65,-44,-24,-4,16,36,55,73,92,109,127,144,160,176,192,207];
 const cashflowCo2 = [-250,-220,-190,-160,-130,-100,-70,-40,-12,10,30,49,67,84,101,117,133,148,163,177,191,204,217,229,241];
@@ -60,6 +62,24 @@ const zeroLinePlugin = {
   }
 };
 
+
+function applyTheme(theme) {
+  const light = theme === 'light';
+  document.body.classList.toggle('theme-light', light);
+  themeBtn.setAttribute('aria-pressed', String(light));
+  themeBtn.textContent = light ? '☾ Dark' : '☀︎ Light';
+}
+
+function initThemeToggle() {
+  const stored = localStorage.getItem('pitchTheme') || 'dark';
+  applyTheme(stored);
+  themeBtn.addEventListener('click', () => {
+    const next = document.body.classList.contains('theme-light') ? 'dark' : 'light';
+    localStorage.setItem('pitchTheme', next);
+    applyTheme(next);
+  });
+}
+
 function initInteractivePulses() {
   document.querySelectorAll('.building.interactive').forEach((group) => {
     const rect = group.querySelector('rect');
@@ -92,6 +112,7 @@ function showSlide(i) {
   counter.textContent = `${current + 1} / ${slides.length}`;
   progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
   lazyInitCharts();
+  revealOnSlide();
   if (slides[current].dataset.title === 'Product Carbon Footprint') animateImpact();
 }
 
@@ -125,10 +146,90 @@ function initScenarioToggle() {
       scenario = btn.dataset.scenario;
       document.querySelectorAll('[data-scenario]').forEach((b) => b.classList.toggle('active', b === btn));
       if (charts.cashflow) {
-        charts.cashflow.data.datasets[0].data = scenario === 'co2' ? cashflowCo2 : cashflowStandard;
+        charts.cashflow.data.datasets[0].data = getScenarioCashflow();
         charts.cashflow.update();
       }
     });
+  });
+}
+
+
+function getScenarioCashflow() {
+  const base = scenario === 'co2' ? cashflowCo2 : cashflowStandard;
+  const e = scenarioInputs.energy / 100;
+  const c = (scenarioInputs.co2 - 150) / 150;
+  const m = (scenarioInputs.market - 100) / 100;
+  return base.map((v, i) => Math.round(v + (i + 1) * (2.2 * c + 1.6 * m - 1.4 * e)));
+}
+
+function initConfigurator() {
+  const energy = document.getElementById('energyRange');
+  const co2 = document.getElementById('co2Range');
+  const market = document.getElementById('marketRange');
+  const energyVal = document.getElementById('energyVal');
+  const co2Val = document.getElementById('co2Val');
+  const marketVal = document.getElementById('marketVal');
+  if (!energy || !co2 || !market) return;
+  const update = () => {
+    scenarioInputs.energy = Number(energy.value);
+    scenarioInputs.co2 = Number(co2.value);
+    scenarioInputs.market = Number(market.value);
+    energyVal.textContent = `${scenarioInputs.energy}%`;
+    co2Val.textContent = `${scenarioInputs.co2} €/t`;
+    marketVal.textContent = `${scenarioInputs.market}%`;
+    if (charts.cashflow) {
+      charts.cashflow.data.datasets[0].data = getScenarioCashflow();
+      charts.cashflow.update();
+    }
+  };
+  [energy, co2, market].forEach((el) => el.addEventListener('input', update));
+  update();
+}
+
+function initMicroscope() {
+  const box = document.getElementById('microscope');
+  const lens = document.getElementById('lens');
+  const zoom = lens?.querySelector('.zoom-layer');
+  if (!box || !lens || !zoom) return;
+  box.addEventListener('mousemove', (e) => {
+    const r = box.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    lens.style.transform = `translate(${x - 70}px, ${y - 70}px)`;
+    zoom.style.transform = `translate(${-x * 1.7 + 70}px, ${-y * 1.7 + 70}px)`;
+  });
+  box.addEventListener('mouseleave', () => lens.style.transform = 'translate(-999px,-999px)');
+}
+
+function initBendTest() {
+  const range = document.getElementById('bendRange');
+  const sheet = document.getElementById('paperSheet');
+  const kit = document.getElementById('kitVal');
+  if (!range || !sheet || !kit) return;
+  range.addEventListener('input', () => {
+    const v = Number(range.value);
+    sheet.style.transform = `rotateY(${-v * 0.45}deg) rotateX(${v * 0.08}deg)`;
+    const integrity = Math.max(82, Math.round(100 - v * 0.18));
+    kit.textContent = `${integrity}%`;
+  });
+}
+
+function initScrollStory() {
+  let lock = false;
+  window.addEventListener('wheel', (e) => {
+    if (lock) return;
+    if (Math.abs(e.deltaY) < 25) return;
+    lock = true;
+    showSlide(current + (e.deltaY > 0 ? 1 : -1));
+    setTimeout(() => (lock = false), 420);
+  }, { passive: true });
+}
+
+function revealOnSlide() {
+  const slide = slides[current];
+  slide.querySelectorAll('.card, .kpi-grid, details').forEach((el, i) => {
+    el.classList.add('reveal-item');
+    setTimeout(() => el.classList.add('revealed'), i * 30);
   });
 }
 
@@ -137,7 +238,7 @@ function lazyInitCharts() {
     const years = Array.from({ length: 25 }, (_, i) => i + 1);
     charts.cashflow = new Chart(document.getElementById('cashflowChart'), {
       type: 'line',
-      data: { labels: years, datasets: [{ data: cashflowStandard, borderColor: '#fff', borderWidth: 2, tension: .4, fill: true, backgroundColor: 'rgba(37,99,235,.15)', pointRadius: 0 }] },
+      data: { labels: years, datasets: [{ data: getScenarioCashflow(), borderColor: '#fff', borderWidth: 2, tension: .4, fill: true, backgroundColor: 'rgba(37,99,235,.15)', pointRadius: 0 }] },
       options: {
         responsive: true,
         plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltipHandler } },
@@ -212,7 +313,12 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+initThemeToggle();
 initInteractivePulses();
 initScenarioToggle();
+initConfigurator();
+initMicroscope();
+initBendTest();
 initLayerTooltips();
+initScrollStory();
 showSlide(0);
