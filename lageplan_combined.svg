@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f5f9ff"/>
+  <text x="180" y="70" font-family="Arial, sans-serif" font-size="44" fill="#1f3b66" font-weight="700">Bestand</text>
+  <text x="980" y="70" font-family="Arial, sans-serif" font-size="44" fill="#1f3b66" font-weight="700">Umbau</text>
+
+  <rect x="40" y="100" width="720" height="760" rx="24" fill="#ffffff" stroke="#cfe2ff" stroke-width="4"/>
+  <rect x="840" y="100" width="720" height="760" rx="24" fill="#ffffff" stroke="#cfe2ff" stroke-width="4"/>
+
+  <image href="Papiermaschine_Bestand.png" x="70" y="130" width="660" height="340" preserveAspectRatio="xMidYMid meet"/>
+  <image href="Stoffaufbereitung_Bestand.png" x="70" y="490" width="660" height="340" preserveAspectRatio="xMidYMid meet"/>
+
+  <image href="Papiermaschine_Umbau.png" x="870" y="130" width="660" height="340" preserveAspectRatio="xMidYMid meet"/>
+  <image href="Stoffaufbereitung_Umbau.png" x="870" y="490" width="660" height="340" preserveAspectRatio="xMidYMid meet"/>
+</svg>
