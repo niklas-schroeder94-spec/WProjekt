@@ -133,12 +133,13 @@ function openDetail(target) {
   overlayTitle.textContent = config.title;
   overlayImage.src = config.image;
   overlayPanel.classList.add('open');
+  setSankeyActive(target === "stoff");
 }
 
 document.querySelectorAll('[data-target="stoff"], [data-target="pm"]').forEach((el) => {
   el.addEventListener('click', () => openDetail(el.dataset.target));
 });
-closeOverlay.addEventListener('click', () => overlayPanel.classList.remove('open'));
+closeOverlay.addEventListener('click', () => { overlayPanel.classList.remove('open'); setSankeyActive(false); });
 
 function initScenarioToggle() {
   document.querySelectorAll('[data-scenario]').forEach((btn) => {
@@ -212,6 +213,45 @@ function initBendTest() {
     const integrity = Math.max(82, Math.round(100 - v * 0.18));
     kit.textContent = `${integrity}%`;
   });
+}
+
+
+function setSankeyActive(on) {
+  ['flowForward','flowSteam'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('active', on);
+  });
+}
+
+function initBarrierBuilder() {
+  const checks = [...document.querySelectorAll('.layer-toggle')];
+  const otr = document.getElementById('otrValue');
+  const box = otr?.closest('.otr-box');
+  if (!checks.length || !otr || !box) return;
+  const calc = () => {
+    let value = 18;
+    const active = Object.fromEntries(checks.map((c) => [c.dataset.layer, c.checked]));
+    if (!active.chitosan) value += 22;
+    if (!active.pha) value += 12;
+    if (!active.top) value += 8;
+    otr.textContent = String(value);
+    box.classList.toggle('warn', value > 30);
+  };
+  checks.forEach((c) => c.addEventListener('change', calc));
+  calc();
+}
+
+
+function initSlotDieAnimationControl() {
+  const card = document.querySelector('.slotdie-anim-card');
+  const slider = document.getElementById('speedRange');
+  if (!card || !slider) return;
+  const setSpeed = (v) => card.style.setProperty('--speed', String(v));
+  setSpeed(slider.value);
+  slider.addEventListener('input', () => setSpeed(slider.value));
+  card.addEventListener('mouseenter', () => setSpeed(Number(slider.value) * 1.25));
+  card.addEventListener('mouseleave', () => setSpeed(slider.value));
 }
 
 function initScrollStory() {
@@ -320,5 +360,7 @@ initConfigurator();
 initMicroscope();
 initBendTest();
 initLayerTooltips();
+initBarrierBuilder();
+initSlotDieAnimationControl();
 initScrollStory();
 showSlide(0);

@@ -183,3 +183,41 @@ body.theme-light .so-what { color: #16223c; }
 
 .reveal-item { opacity: 0; transform: translateY(16px); transition: all .45s var(--ease); }
 .reveal-item.revealed { opacity: 1; transform: translateY(0); }
+
+.sankey { width: 100%; height: auto; }
+.sankey rect { fill: rgba(255,255,255,.06); stroke: var(--line); }
+.sankey text { fill: var(--sub); font-size: 12px; }
+.sankey path { fill: none; stroke: rgba(255,255,255,.25); stroke-width: 8; stroke-linecap: round; transition: stroke .25s var(--ease), filter .25s var(--ease); }
+.sankey path.active { stroke: #2563eb; filter: drop-shadow(0 0 6px rgba(37,99,235,.65)); }
+
+.builder-grid { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
+.builder-grid label { display: block; margin: 8px 0; color: var(--sub); }
+.otr-box { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: 20px; }
+.otr-box.warn { color: #ff453a; border-color: rgba(255,69,58,.5); }
+
+.slotdie-anim-card { --speed: 1; }
+.slotdie-anim { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.02); }
+.web-path {
+  fill: none;
+  stroke: rgba(210,220,240,.7);
+  stroke-width: 26;
+  stroke-dasharray: 10 14;
+  animation: webFlow calc(4s / var(--speed)) linear infinite;
+}
+.coating-path {
+  fill: none;
+  stroke: rgba(37,99,235,.85);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 8 12;
+  animation: coatFlow calc(3s / var(--speed)) linear infinite;
+}
+.slotdie-head { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.35); }
+.slotdie-gap { fill: rgba(255,255,255,.9); }
+.fluid-jet { fill: none; stroke: rgba(37,99,235,.9); stroke-width: 6; stroke-linecap: round; }
+.roller { fill: rgba(255,255,255,.08); stroke: rgba(255,255,255,.5); }
+.roller-mark { stroke: #fff; stroke-width: 3; transform-origin: 350px 40px; animation: rollerSpin calc(2s / var(--speed)) linear infinite; }
+
+@keyframes webFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -240; } }
+@keyframes coatFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -160; } }
+@keyframes rollerSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

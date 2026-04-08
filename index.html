@@ -53,6 +53,17 @@
           <button class="chip" data-target="pm">Papiermaschine → Details</button>
         </div>
       </div>
+      <div class="card sankey-card">
+        <h3>Energie-Autarkie Fluss</h3>
+        <svg id="sankeySvg" viewBox="0 0 700 180" class="sankey">
+          <rect x="20" y="50" width="140" height="60" rx="8"/><text x="30" y="85">Stoffaufbereitung</text>
+          <rect x="280" y="50" width="140" height="60" rx="8"/><text x="292" y="85">Biomasse-KW</text>
+          <rect x="540" y="50" width="140" height="60" rx="8"/><text x="552" y="85">Papiermaschine</text>
+          <path id="flowForward" d="M160 80 C220 80, 220 80, 280 80"/>
+          <path id="flowSteam" d="M420 80 C480 80, 480 80, 540 80"/>
+        </svg>
+        <p class="meta">Klick auf Stoffaufbereitung aktiviert den Material- und Dampfpfad.</p>
+      </div>
       <p class="so-what">Kernaussage: Der Umbau ist standortlogisch integrierbar und die kritischen Anlagen sind klar adressiert.</p>
       <div id="overlayPanel" class="overlay-panel">
         <div class="overlay-head"><h3 id="overlayTitle">Detailansicht</h3><button id="closeOverlay" class="pill">✕ Schließen</button></div>
@@ -117,6 +128,27 @@
         </div>
       </div>
 
+      
+      <div class="card slotdie-anim-card">
+        <h3>Slot-Die Coating — Technische Animation</h3>
+        <label class="meta">Geschwindigkeit <input id="speedRange" type="range" min="0.4" max="2" step="0.1" value="1"/></label>
+        <svg id="slotDieAnim" class="slotdie-anim" viewBox="0 0 760 260" aria-label="Slot-Die Animation">
+          <defs>
+            <pattern id="webPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect width="20" height="20" fill="rgba(255,255,255,0.06)"/>
+              <line x1="0" y1="0" x2="20" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <path class="web-path" d="M310 250 L310 70 Q310 40 350 40 L620 40"/>
+          <path class="coating-path" d="M334 190 L334 70 Q334 40 350 40 L620 40"/>
+          <path class="slotdie-head" d="M210 170 L300 170 L330 130 L260 130 Z"/>
+          <rect class="slotdie-gap" x="322" y="132" width="8" height="24" rx="2"/>
+          <path class="fluid-jet" d="M326 156 L334 190"/>
+          <circle class="roller" cx="350" cy="40" r="28"/>
+          <line class="roller-mark" x1="350" y1="40" x2="370" y2="40"/>
+        </svg>
+      </div>
+
       <h3>Marktpositionierung — Top-3 Fahrweisen (85 % der Produktion)</h3>
       <div class="kpi-grid three"><article class="card"><p class="kpi">45 %</p><p class="meta">Standard Fett · KIT ≥ 10 | WVTR &lt; 150 | bis 200 °C</p><div class="bar"><span style="width:45%"></span></div></article><article class="card"><p class="kpi">25 %</p><p class="meta">Universal · KIT ≥ 10 | WVTR &lt; 80 | OTR &lt; 50</p><div class="bar"><span style="width:25%"></span></div></article><article class="card"><p class="kpi">10 %</p><p class="meta">Hochtemperatur · KIT ≥ 8 | bis 220 °C</p><div class="bar"><span style="width:10%"></span></div></article></div>
       <details><summary>Alle 6 Produktvarianten</summary><table><tr><th>Variante</th><th>Anteil</th><th>Fokus</th></tr><tr><td>Standard Fett</td><td>45%</td><td>Fettbarriere</td></tr><tr><td>Universal</td><td>25%</td><td>Fett + MOH</td></tr><tr><td>Hochtemperatur</td><td>10%</td><td>220°C Stabilität</td></tr><tr><td>MOH-konform</td><td>5%</td><td>MOSH/MOAH</td></tr><tr><td>Max Fett+MOH</td><td>5%</td><td>Kombi-Barriere</td></tr><tr><td>Hochbarriere OTR</td><td>5%</td><td>Sauerstoffbarriere</td></tr></table></details>
@@ -129,6 +161,19 @@
         <table><tr><th>Komponente</th><th>Teile</th><th>Dosierung</th><th>Funktion</th></tr><tr><td>AKD</td><td>35</td><td>0,140</td><td>Hydrophobierung</td></tr><tr><td>Shellac E904</td><td>20</td><td>0,080</td><td>Filmhärte, Fettdichtigkeit</td></tr><tr><td>Acrylatbinder</td><td>40</td><td>0,160</td><td>Kohäsion, Haftung</td></tr><tr><td>Slipadditiv</td><td>3</td><td>0,012</td><td>Gleitverhalten</td></tr><tr><td>Netzmittel</td><td>1</td><td>0,004</td><td>Verlauf</td></tr><tr><td>Entschäumer</td><td>1</td><td>0,004</td><td>Oberflächenqualität</td></tr></table>
       </details>
       <details><summary>Technische Produktspezifikationen</summary><table><tr><th>Eigenschaft</th><th>Bestand</th><th>Umbau</th><th>Prüfnorm</th></tr><tr><td>Flächengewicht</td><td>40 g/m² ±2%</td><td>50 g/m² ±2%</td><td>ISO 536</td></tr><tr><td>Dicke</td><td>50 µm ±5%</td><td>65 µm ±5%</td><td>ISO 534</td></tr><tr><td>Zugfestigkeit MD</td><td>≥3,5 kN/m</td><td>≥3,2 kN/m</td><td>ISO 1924-2</td></tr><tr><td>KIT</td><td>≥8</td><td>≥8</td><td>TAPPI T 559</td></tr><tr><td>WVTR</td><td>&lt;250</td><td>&lt;80</td><td>ISO 2528</td></tr><tr><td>OTR</td><td>—</td><td>&lt;20</td><td>ISO 15105-2</td></tr></table></details>
+      
+      <div class="card builder-card">
+        <h3>Barrier-Builder (Wirkmechanismen)</h3>
+        <div class="builder-grid">
+          <div>
+            <label><input type="checkbox" class="layer-toggle" data-layer="chitosan" checked /> Chitosan aktiv</label>
+            <label><input type="checkbox" class="layer-toggle" data-layer="pha" checked /> PHA aktiv</label>
+            <label><input type="checkbox" class="layer-toggle" data-layer="top" checked /> Top Coat aktiv</label>
+          </div>
+          <div class="otr-box">OTR: <strong id="otrValue">18</strong> cm³/m²·d</div>
+        </div>
+      </div>
+
       <p class="so-what">Kernaussage: Slot-Die ermöglicht stabile Barriereperformance bei industrieller Skalierbarkeit.</p>
     </section>
 
