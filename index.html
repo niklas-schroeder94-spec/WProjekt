@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barrierepapier — Konzept 1</title>
+  <link rel="stylesheet" href="pitch.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="project-title">Barrierepapier — Konzept 1</div>
+    <nav class="dot-nav" id="dotNav" aria-label="Slide Navigation"></nav>
+    <div class="nav-actions">
+      <button id="themeBtn" class="pill" aria-pressed="false">☀︎ Light</button><button id="prevBtn" class="pill">← Zurück</button>
+      <button id="nextBtn" class="pill">Weiter →</button>
+    </div>
+  </header>
+
+  <main class="deck">
+    <section class="slide active hero-slide" data-title="Die Zukunft der Verpackung">
+      <h1>Die Zukunft der Verpackung</h1>
+      <div class="hero-grid">
+        <article class="card"><h3>Problem: Plastik / Verbund</h3><p>Hohe fossile Abhängigkeit, schwierige Rezyklierbarkeit, steigender regulatorischer Druck durch PPWR und CO₂-Kosten.</p></article>
+        <article class="card"><h3>Lösung: Bio-Polymer Barrierepapier</h3><p>Rezyklierbare, mineralölfreie und lebensmittelkonforme Alternative auf Faserbasis mit klar messbarer CO₂- und Ressourceneinsparung.</p></article>
+      </div>
+      <p class="so-what">Kernaussage: Konzept 1 verbindet industrielle Machbarkeit mit klarer Nachhaltigkeitswirkung.</p>
+    </section>
+
+    <section class="slide" data-title="Werksgelände">
+      <h1>Werksgelände</h1>
+      <p class="sub">Umbau Konzept 1 — Standortübersicht</p>
+      <div class="plan-wrap">
+        <svg viewBox="0 0 820 520" class="lageplan" role="img" aria-label="Lageplan mit Gebäuden">
+          <g class="building"><rect x="20" y="20" width="150" height="60"/><text x="28" y="54">Altpapierlager</text></g>
+          <g class="building interactive" data-target="stoff"><rect x="200" y="20" width="120" height="50"/><text x="208" y="48">Stoffaufbereitung</text></g>
+          <g class="building interactive" data-target="pm"><rect x="350" y="20" width="120" height="20"/><text x="358" y="36">Umbau Papiermaschine</text></g>
+          <g class="building"><rect x="500" y="20" width="35" height="20"/><text x="502" y="36">T-Lager</text></g>
+          <g class="building"><rect x="550" y="20" width="20" height="20"/><text x="551" y="36">UR</text></g>
+          <g class="building"><rect x="200" y="90" width="50" height="50"/><text x="204" y="120">Anbau STA</text></g>
+          <g class="building"><rect x="20" y="100" width="120" height="60"/><text x="24" y="136">Fertigrollenlager</text></g>
+          <g class="building"><rect x="20" y="180" width="120" height="100"/><text x="24" y="235">Ausrüstung</text></g>
+          <g class="building"><rect x="160" y="180" width="50" height="60"/><text x="165" y="214">Parkplatz</text></g>
+          <g class="building"><rect x="240" y="180" width="180" height="125"/><text x="246" y="246">Biomasse Kraftwerk</text></g>
+          <g class="building"><rect x="440" y="180" width="50" height="60"/><text x="443" y="214">Wasseraufb.</text></g>
+          <g class="building"><rect x="510" y="180" width="50" height="25"/><text x="518" y="197">Stärke</text></g>
+          <g class="building"><rect x="580" y="180" width="60" height="60"/><text x="584" y="214">SMA</text></g>
+          <g class="building"><rect x="660" y="180" width="60" height="60"/><text x="666" y="214">Chemie</text></g>
+        </svg>
+        <div class="chips">
+          <button class="chip" data-target="stoff">Stoffaufbereitung → Details</button>
+          <button class="chip" data-target="pm">Papiermaschine → Details</button>
+        </div>
+      </div>
+      <div class="card sankey-card">
+        <h3>Energie-Autarkie Fluss</h3>
+        <svg id="sankeySvg" viewBox="0 0 700 180" class="sankey">
+          <rect x="20" y="50" width="140" height="60" rx="8"/><text x="30" y="85">Stoffaufbereitung</text>
+          <rect x="280" y="50" width="140" height="60" rx="8"/><text x="292" y="85">Biomasse-KW</text>
+          <rect x="540" y="50" width="140" height="60" rx="8"/><text x="552" y="85">Papiermaschine</text>
+          <path id="flowForward" d="M160 80 C220 80, 220 80, 280 80"/>
+          <path id="flowSteam" d="M420 80 C480 80, 480 80, 540 80"/>
+        </svg>
+        <p class="meta">Klick auf Stoffaufbereitung aktiviert den Material- und Dampfpfad.</p>
+      </div>
+      <p class="so-what">Kernaussage: Der Umbau ist standortlogisch integrierbar und die kritischen Anlagen sind klar adressiert.</p>
+      <div id="overlayPanel" class="overlay-panel">
+        <div class="overlay-head"><h3 id="overlayTitle">Detailansicht</h3><button id="closeOverlay" class="pill">✕ Schließen</button></div>
+        <img id="overlayImage" src="" alt="Detailbild" />
+      </div>
+    </section>
+
+    <section class="slide" data-title="Investition & Wirtschaftlichkeit">
+      <h1>Investition & Wirtschaftlichkeit</h1>
+      <p class="sub">Amortisation in Jahr 13 — positiver NPV ab Jahr 14</p>
+      <div class="kpi-grid two">
+        <article class="card"><p class="kpi">248,4</p><p class="meta">Gesamt-CAPEX (Mio. €)</p></article>
+        <article class="card"><p class="kpi">13</p><p class="meta">Break-Even (Jahr)</p></article>
+        <article class="card"><p class="kpi pos">+15,4</p><p class="meta">OPEX Δ Energie (Mio. €/a)</p></article>
+        <article class="card"><p class="kpi pos">+75,1</p><p class="meta">OPEX Δ Rohstoff (Mio. €/a)</p></article>
+      </div>
+      <div class="card"><h3>Kumulierter Cashflow über 25 Jahre</h3><div class="scenario-toggle"><button class="pill active" data-scenario="standard">Standard</button><button class="pill" data-scenario="co2">CO₂-Steuer Impact</button></div><div class="chart-wrap"><canvas id="cashflowChart"></canvas></div></div>
+      <div class="card"><h3>OPEX-Struktur Bestand vs. Umbau (Mio. €/a)</h3><div class="chart-wrap opex"><canvas id="opexChart"></canvas></div><p class="meta right">Gesamt: Bestand 208 Mio. € | Umbau 234 Mio. €</p></div>
+      <details><summary>CAPEX-Aufschlüsselung (Top-Positionen)</summary><table><tr><td>Biomassekraftwerk</td><td>124,4 Mio. €</td></tr><tr><td>Papiermaschine (Umbau)</td><td>83,1 Mio. €</td></tr><tr><td>Stoffaufbereitung</td><td>32,9 Mio. €</td></tr><tr><td>Streichmassenaufbereitung</td><td>8,0 Mio. €</td></tr><tr><th>Gesamt</th><th>248,4 Mio. €</th></tr></table></details>
+      <details><summary>LCOE Biomassekraftwerk</summary><div class="kpi-grid two"><article class="card"><p class="kpi">40,3</p><p class="meta">Szenario A €/MWh (−50 % vs. Markt)</p></article><article class="card"><p class="kpi">53,3</p><p class="meta">Szenario B €/MWh (−37 % vs. Markt)</p></article></div><p class="meta">Marktpreis Referenz: 80–100 €/MWh · NPV Szenario A: +209 Mio. €</p></details>
+      <details><summary>Jahresergebnis (Auswahl)</summary><table><tr><th>Jahr</th><th>EBITDA</th><th>Cashflow</th><th>Kumuliert</th></tr><tr><td>1</td><td>−16,0</td><td>−16,0</td><td>−264</td></tr><tr><td>5</td><td>+27,5</td><td>+22,2</td><td>−174</td></tr><tr><td>10</td><td>+25,4</td><td>+20,8</td><td>−65</td></tr><tr><td>13</td><td>+24,5</td><td>+20,1</td><td>−4</td></tr><tr><td>15</td><td>+23,5</td><td>+19,4</td><td>+36</td></tr><tr><td>25</td><td>+17,1</td><td>+14,9</td><td>+207</td></tr></table></details>
+      
+      <div class="card configurator">
+        <h3>Live-Szenario-Konfigurator</h3>
+        <label>Energiepreis-Entwicklung: <span id="energyVal">0%</span><input id="energyRange" type="range" min="-30" max="30" value="0"/></label>
+        <label>CO₂-Zertifikatspreis: <span id="co2Val">150 €/t</span><input id="co2Range" type="range" min="50" max="300" value="150"/></label>
+        <label>Marktpreis Kunststoff-Referenz: <span id="marketVal">100%</span><input id="marketRange" type="range" min="70" max="140" value="100"/></label>
+      </div>
+
+      <p class="so-what">Kernaussage: Break-even wird im Jahr 13 erreicht, danach skaliert der positive Cashflow robust.</p>
+    </section>
+
+    <section class="slide" data-title="Product Carbon Footprint">
+      <h1>Product Carbon Footprint</h1>
+      <p class="sub">Cradle-to-Gate | Funktionelle Einheit: 1 m² Barrierepapier</p>
+      <div class="banner"><p class="hero">−52,7 %</p><p class="sub">PCF-Reduktion gegenüber Bestand</p><span class="success">✓ Ziel ≥ 50% erreicht</span><p class="impact">CO₂-Einsparung/Jahr: <strong id="impactCounter">0</strong> t</p></div>
+      <div class="kpi-grid three">
+        <article class="card"><p class="kpi">0,071</p><p class="meta">PCF Bestand (kg CO₂e/m²)</p></article>
+        <article class="card"><p class="kpi">0,034</p><p class="meta">PCF Umbau (kg CO₂e/m²)</p></article>
+        <article class="card"><p class="kpi">662 → 0</p><p class="meta">Strom Extern (kWh/t)</p><span class="chip minor">−100 %</span></article>
+      </div>
+      <div class="card"><h3>CO₂e-Beitrag je Kategorie (kg CO₂e / m²)</h3><div class="chart-wrap"><canvas id="pcfChart"></canvas></div><p class="meta">* Streichkomponenten (Umbau) beinhalten PHA, Chitosan, Shellac — höherwertiger Rohstoff, der Erdgas und Frischfaser kompensiert.</p></div>
+      <details><summary>Emissionsfaktoren (Quellen)</summary><table><tr><th>Material</th><th>EF [kg CO₂e/kg]</th><th>Quelle</th></tr><tr><td>BEKP Eukalyptus</td><td>1,10</td><td>ecoinvent</td></tr><tr><td>Altpapier AP 04.01.01</td><td>0,09</td><td>IDEMAT 2024</td></tr><tr><td>PHA</td><td>6,00</td><td>IDEMAT 2024</td></tr><tr><td>Chitosan</td><td>10,00</td><td>IDEMAT 2024</td></tr><tr><td>Shellac E904</td><td>2,00</td><td>IDEMAT 2024</td></tr><tr><td>Strom DE-Mix 2026</td><td>0,40</td><td>UBA/DEFRA 2025</td></tr><tr><td>Biomasse Strom intern</td><td>0,04</td><td>ProBas UBA</td></tr><tr><td>Dampf Biomasse intern</td><td>0,04</td><td>ProBas UBA</td></tr><tr><td>Dampf Erdgas</td><td>0,20</td><td>ProBas UBA</td></tr></table></details>
+      <details><summary>Vollständige Mengenbilanz</summary><table><tr><th>Komponente</th><th>Bestand [g/m²]</th><th>Umbau [g/m²]</th></tr><tr><td>BEKP / Altpapier</td><td>37,50</td><td>41,30</td></tr><tr><td>Stärke Oberfläche</td><td>4,00</td><td>3,68</td></tr><tr><td>Primer</td><td>–</td><td>4,00</td></tr><tr><td>Barrierestrich</td><td>–</td><td>8,00</td></tr><tr><td>Deckstrich</td><td>–</td><td>4,00</td></tr><tr><td>Strom gesamt</td><td>828 kWh/t</td><td>1001 kWh/t</td></tr><tr><td>Dampf</td><td>630 kWh/t</td><td>659 kWh/t</td></tr><tr><td>Gas</td><td>342 kWh/t</td><td>0 kWh/t</td></tr><tr><td>Frischwasser</td><td>12,0 m³/t</td><td>10,2 m³/t</td></tr></table></details>
+      <p class="so-what">Kernaussage: Trotz komplexerer Rezeptur sinkt der PCF deutlich um 52,7 %.</p>
+    </section>
+
+    <section class="slide" data-title="Slot-Die Technologie">
+      <h1>Slot-Die Barrierebeschichtung</h1>
+      <p class="sub">10-Schicht-Sprühtechnologie — wasserbasiert, mineralölfrei, recyclebar</p>
+      <div class="split">
+        <article class="card"><p class="meta">50 g/m² gesamt</p><div class="layers"><div style="--h:8%;--c:rgba(37,99,235,.3)"><span class="layer-item" data-tip="Hydrophobie, Fettabweisung, Oberflächenhärte">Top Coat hydrophob · 0,8 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="MOH+O₂-Barriere durch dichte Polymermatrix">Barrierestrich oben · 4,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Porenfüller für homogene Schichtbildung">Primer oben · 2,0 g/m²</span></div><div style="--h:44%;--c:rgba(255,255,255,.08)"><span class="layer-item" data-tip="Trägerschicht AP 04.01.01 mit hoher Verfügbarkeit">Recyclingfaser · 38,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Haftvermittler zur Rückseitenstabilisierung">Primer unten · 2,0 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="Sauerstoffbarriere & Mineralölstopp auf Rückseite">Barrierestrich unten · 4,0 g/m²</span></div></div></article>
+        <article class="card"><h3>Präzisionsbeschichtung ohne Kontakt</h3><p>Das Slot-Die-Verfahren trägt wasserbasierte Funktionsschichten berührungslos und hochpräzise auf. Geeignet für Biopolymer-Dispersionen wie PHA, Chitosan und PVOH — mit homogener Schichtdicke unter 1 μm Toleranz.</p><div class="link-buttons"><a class="pill" href="#">Slot-Die CFD Simulation (Case Study)</a><a class="pill" href="#">Basics of Slot Die Coating — next Machinery</a><a class="pill" href="#">Chitosan Slot-Die — Springer Nature</a></div></article>
+      </div>
+      
+      <div class="card microscope-card">
+        <h3>Mikroskop-Ansicht (Deep Dive)</h3>
+        <p class="meta">Bewege die Lupe über die Papieroberfläche, um den 3D-Querschnitt der Barrierestruktur zu sehen.</p>
+        <div id="microscope" class="microscope">
+          <div class="paper-surface"></div>
+          <div id="lens" class="lens"><div class="zoom-layer"></div></div>
+        </div>
+      </div>
+
+      
+      <div class="card slotdie-anim-card">
+        <h3>Slot-Die Coating — Technische Animation</h3>
+        <label class="meta">Geschwindigkeit <input id="speedRange" type="range" min="0.4" max="2" step="0.1" value="1"/></label>
+        <svg id="slotDieAnim" class="slotdie-anim" viewBox="0 0 760 260" aria-label="Slot-Die Animation">
+          <defs>
+            <pattern id="webPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect width="20" height="20" fill="rgba(255,255,255,0.06)"/>
+              <line x1="0" y1="0" x2="20" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <path class="web-path" d="M310 250 L310 70 Q310 40 350 40 L620 40"/>
+          <path class="coating-path" d="M334 190 L334 70 Q334 40 350 40 L620 40"/>
+          <path class="slotdie-head" d="M210 170 L300 170 L330 130 L260 130 Z"/>
+          <rect class="slotdie-gap" x="322" y="132" width="8" height="24" rx="2"/>
+          <path class="fluid-jet" d="M326 156 L334 190"/>
+          <circle class="roller" cx="350" cy="40" r="28"/>
+          <line class="roller-mark" x1="350" y1="40" x2="370" y2="40"/>
+        </svg>
+      </div>
+
+      <h3>Marktpositionierung — Top-3 Fahrweisen (85 % der Produktion)</h3>
+      <div class="kpi-grid three"><article class="card"><p class="kpi">45 %</p><p class="meta">Standard Fett · KIT ≥ 10 | WVTR &lt; 150 | bis 200 °C</p><div class="bar"><span style="width:45%"></span></div></article><article class="card"><p class="kpi">25 %</p><p class="meta">Universal · KIT ≥ 10 | WVTR &lt; 80 | OTR &lt; 50</p><div class="bar"><span style="width:25%"></span></div></article><article class="card"><p class="kpi">10 %</p><p class="meta">Hochtemperatur · KIT ≥ 8 | bis 220 °C</p><div class="bar"><span style="width:10%"></span></div></article></div>
+      <details><summary>Alle 6 Produktvarianten</summary><table><tr><th>Variante</th><th>Anteil</th><th>Fokus</th></tr><tr><td>Standard Fett</td><td>45%</td><td>Fettbarriere</td></tr><tr><td>Universal</td><td>25%</td><td>Fett + MOH</td></tr><tr><td>Hochtemperatur</td><td>10%</td><td>220°C Stabilität</td></tr><tr><td>MOH-konform</td><td>5%</td><td>MOSH/MOAH</td></tr><tr><td>Max Fett+MOH</td><td>5%</td><td>Kombi-Barriere</td></tr><tr><td>Hochbarriere OTR</td><td>5%</td><td>Sauerstoffbarriere</td></tr></table></details>
+      <details><summary>Vollständige Strichrezepturen</summary>
+        <h4>Hitzebarriere (0,4 g/m² je Schicht)</h4>
+        <table><tr><th>Komponente</th><th>Teile</th><th>Dosierung</th><th>Funktion</th></tr><tr><td>PHA</td><td>80</td><td>0,320</td><td>Hauptmatrix, hitzestabil</td></tr><tr><td>PVOH</td><td>12</td><td>0,048</td><td>Co-Binder, O₂-Barriere</td></tr><tr><td>Citrat</td><td>4</td><td>0,016</td><td>Weichmacher</td></tr><tr><td>Dispergiermittel</td><td>2</td><td>0,008</td><td>Stabilisierung</td></tr><tr><td>Netzmittel</td><td>1</td><td>0,004</td><td>Benetzung</td></tr><tr><td>Entschäumer</td><td>1</td><td>0,004</td><td>Prozessstabilität</td></tr></table>
+        <h4>MOH-Barriere (0,4 g/m² je Schicht)</h4>
+        <table><tr><th>Komponente</th><th>Teile</th><th>Dosierung</th><th>Funktion</th></tr><tr><td>Chitosan</td><td>69</td><td>0,276</td><td>MOSH/MOAH Barriere</td></tr><tr><td>PVOH</td><td>25</td><td>0,100</td><td>Filmdichte</td></tr><tr><td>Glycerin</td><td>3</td><td>0,012</td><td>Flexibilisierung</td></tr><tr><td>Glyoral</td><td>1,5</td><td>0,006</td><td>Vernetzer</td></tr><tr><td>Netzmittel</td><td>1</td><td>0,004</td><td>Fehlstellenvermeidung</td></tr><tr><td>Entschäumer</td><td>0,5</td><td>0,002</td><td>Prozessstabilität</td></tr></table>
+        <h4>Top Coat hydrophob (0,4 g/m² je Schicht)</h4>
+        <table><tr><th>Komponente</th><th>Teile</th><th>Dosierung</th><th>Funktion</th></tr><tr><td>AKD</td><td>35</td><td>0,140</td><td>Hydrophobierung</td></tr><tr><td>Shellac E904</td><td>20</td><td>0,080</td><td>Filmhärte, Fettdichtigkeit</td></tr><tr><td>Acrylatbinder</td><td>40</td><td>0,160</td><td>Kohäsion, Haftung</td></tr><tr><td>Slipadditiv</td><td>3</td><td>0,012</td><td>Gleitverhalten</td></tr><tr><td>Netzmittel</td><td>1</td><td>0,004</td><td>Verlauf</td></tr><tr><td>Entschäumer</td><td>1</td><td>0,004</td><td>Oberflächenqualität</td></tr></table>
+      </details>
+      <details><summary>Technische Produktspezifikationen</summary><table><tr><th>Eigenschaft</th><th>Bestand</th><th>Umbau</th><th>Prüfnorm</th></tr><tr><td>Flächengewicht</td><td>40 g/m² ±2%</td><td>50 g/m² ±2%</td><td>ISO 536</td></tr><tr><td>Dicke</td><td>50 µm ±5%</td><td>65 µm ±5%</td><td>ISO 534</td></tr><tr><td>Zugfestigkeit MD</td><td>≥3,5 kN/m</td><td>≥3,2 kN/m</td><td>ISO 1924-2</td></tr><tr><td>KIT</td><td>≥8</td><td>≥8</td><td>TAPPI T 559</td></tr><tr><td>WVTR</td><td>&lt;250</td><td>&lt;80</td><td>ISO 2528</td></tr><tr><td>OTR</td><td>—</td><td>&lt;20</td><td>ISO 15105-2</td></tr></table></details>
+      
+      <div class="card builder-card">
+        <h3>Barrier-Builder (Wirkmechanismen)</h3>
+        <div class="builder-grid">
+          <div>
+            <label><input type="checkbox" class="layer-toggle" data-layer="chitosan" checked /> Chitosan aktiv</label>
+            <label><input type="checkbox" class="layer-toggle" data-layer="pha" checked /> PHA aktiv</label>
+            <label><input type="checkbox" class="layer-toggle" data-layer="top" checked /> Top Coat aktiv</label>
+          </div>
+          <div class="otr-box">OTR: <strong id="otrValue">18</strong> cm³/m²·d</div>
+        </div>
+      </div>
+
+      <p class="so-what">Kernaussage: Slot-Die ermöglicht stabile Barriereperformance bei industrieller Skalierbarkeit.</p>
+    </section>
+
+    <section class="slide" data-title="Nachhaltigkeit & Ressourcen">
+      <h1>Nachhaltigkeit & Ressourcen</h1>
+      <p class="sub">Weniger Wasser, kürzere Lieferkette, Null externe Entsorgung</p>
+      <div class="kpi-grid three"><article class="card"><p class="kpi">−15,1 %</p><p class="meta">Frischwasser (12,0 → 10,2 m³/t)</p></article><article class="card"><p class="kpi">−15,1 %</p><p class="meta">Abwasser (10,8 → 9,2 m³/t)</p></article><article class="card"><p class="kpi">0 €/t</p><p class="meta">Entsorgung (Rejekte & Schlamm → Biomasse-KW)</p></article></div>
+      <h3>Wasserspar-Maßnahmen</h3>
+      <div class="kpi-grid three"><article class="card"><p class="meta"><strong>Scheibenfilter</strong></p><p>−0,55 m³/t</p></article><article class="card"><p class="meta"><strong>Traversierreiniger</strong></p><p>−1,58 m³/t</p></article><article class="card"><p class="meta"><strong>Streichfarbenaufbereitung</strong></p><p class="warn">+0,31 m³/t</p></article></div>
+      <p class="meta">Gesamteinsparung: −1,82 m³/t = −15,1 % Frischwasserreduktion</p>
+      <div class="card"><h3>Lieferkette</h3><p>BEKP Eukalyptus (Bestand): 🚢 9.000 km → 1,10 kg CO₂e/kg</p><p>Altpapier AP 04.01.01 (Umbau): 🚚 50 km → 0,09 kg CO₂e/kg</p><div class="distance"><div class="full"></div><div class="tiny"></div></div><p class="meta">−99,4 % Transportdistanz</p></div>
+      <details><summary>Vollständige Wasserbilanz</summary><table><tr><td>Abwasser zur Behandlung</td><td>8,5 m³/t</td><td>Hauptabstrom</td></tr><tr><td>Verdunstung</td><td>2,2 m³/t</td><td>thermischer Verlust</td></tr><tr><td>Produktfeuchte</td><td>0,05 m³/t</td><td>Austrag im Produkt</td></tr><tr><td>Schlamm/Rejekte</td><td>0,5 m³/t</td><td>Faseraustrag</td></tr><tr><td>Kühlwasserverluste</td><td>0,75 m³/t</td><td>nicht rückführbar</td></tr><tr><td>Interne Kreislaufwasser</td><td>150 m³/t</td><td>direkt rückführbar</td></tr></table></details>
+      <details><summary>Energiemanagement: Bestand vs. Umbau</summary><p>Bestand: Kohlestaubfeuerung, 80% externer Strom, Gas für Yankee-Hauben. Umbau: Biomassekraftwerk, 0% ext. Strom, kein Gas, 14 MW IR-Strahler.</p><p class="meta">CO₂-Einsparung Energie: ~50.000 t CO₂/a</p></details>
+      
+      <div class="card bend-test">
+        <h3>Physische Simulation: Biege-Test</h3>
+        <p class="meta">Ziehe den Regler: selbst bei starker Faltung bleibt die Barriere stabil.</p>
+        <input id="bendRange" type="range" min="0" max="100" value="0"/>
+        <div class="paper-wrap"><div id="paperSheet" class="paper-sheet">KIT-Integrität <span id="kitVal">100%</span></div></div>
+      </div>
+
+      <p class="so-what">Kernaussage: Wasser- und Lieferketteneffekte liefern sofort messbaren Nachhaltigkeitsnutzen.</p>
+    </section>
+
+    <section class="slide" data-title="Anhang & Download">
+      <h1>Anhang & Download</h1>
+      <div class="card qr">
+        <div class="qr-box">QR</div>
+        <p>Download Whitepaper / Datentabellen (Platzhalter für QR-Code).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot"><span>DHBW Gernsbach | Seminar Nachhaltigkeit & Innovation | 2026</span><span id="slideCounter">1 / 7</span></footer>
+  <script src="pitch.js"></script>
+</body>
+</html>
