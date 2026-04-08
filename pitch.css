@@ -5,13 +5,44 @@
   --text: #eef3ff;
   --muted: #b7c4e8;
   --accent: #66d9ef;
+  --body-grad-a: #121d3b;
+  --body-grad-b: #0d1326;
+  --topbar-bg: rgba(12, 18, 36, 0.94);
+  --page-bg: rgba(17, 26, 51, 0.95);
+  --card-bg: #0f1830;
+  --tab-bg: #17254a;
+  --tab-border: #3d528f;
+  --viewer-bg: #0c1429;
+  --card-border: #2f4379;
+  --wrap-border: #33477d;
+  --viewer-border: #38549a;
+}
+
+body[data-theme='light'] {
+  --bg: #f4f7ff;
+  --panel: #ffffff;
+  --line: #cfdaef;
+  --text: #0f1e3f;
+  --muted: #4d628e;
+  --accent: #2353d8;
+  --body-grad-a: #f3f7ff;
+  --body-grad-b: #e8efff;
+  --topbar-bg: rgba(255, 255, 255, 0.95);
+  --page-bg: rgba(255, 255, 255, 0.97);
+  --card-bg: #f5f8ff;
+  --tab-bg: #f5f8ff;
+  --tab-border: #a9badb;
+  --viewer-bg: #ffffff;
+  --card-border: #cfdaef;
+  --wrap-border: #cfdaef;
+  --viewer-border: #cfdaef;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: Inter, Segoe UI, Arial, sans-serif;
-  background: linear-gradient(160deg, #121d3b, var(--bg));
+  background: linear-gradient(160deg, var(--body-grad-a), var(--body-grad-b));
   color: var(--text);
 }
 
@@ -24,25 +55,34 @@ body {
   gap: 0.7rem 1.2rem;
   align-items: center;
   padding: 0.9rem 1rem;
-  background: rgba(12, 18, 36, 0.94);
+  background: var(--topbar-bg);
   border-bottom: 1px solid var(--line);
 }
 
 .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .tab {
-  border: 1px solid #3d528f;
-  background: #17254a;
+  border: 1px solid var(--tab-border);
+  background: var(--tab-bg);
   color: var(--text);
   border-radius: 10px;
   padding: 0.45rem 0.7rem;
   cursor: pointer;
 }
 .tab.active { border-color: var(--accent); color: var(--accent); }
+.theme-toggle {
+  margin-left: auto;
+  border: 1px solid var(--tab-border);
+  background: var(--tab-bg);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
 
 main { max-width: 1250px; margin: 1.2rem auto; padding: 0 1rem 2rem; }
 .page {
   display: none;
-  background: rgba(17, 26, 51, 0.95);
+  background: var(--page-bg);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 1rem;
@@ -60,17 +100,17 @@ h1 { margin-top: 0; }
 }
 
 .plan-card {
-  border: 1px solid #2f4379;
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 0.7rem;
-  background: #0f1830;
+  background: var(--card-bg);
 }
 
 .plan-wrap {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #33477d;
+  border: 1px solid var(--wrap-border);
   min-height: 470px;
 }
 
@@ -98,10 +138,10 @@ h1 { margin-top: 0; }
 
 .viewer {
   width: min(1100px, 95vw);
-  border: 1px solid #38549a;
+  border: 1px solid var(--viewer-border);
   border-radius: 12px;
   padding: 0.6rem;
-  background: #0c1429;
+  background: var(--viewer-bg);
   color: var(--text);
 }
 .viewer::backdrop { background: rgba(0, 0, 0, 0.6); }
