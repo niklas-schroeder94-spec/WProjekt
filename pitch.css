@@ -1,0 +1,128 @@
+:root {
+  --bg: #0d1326;
+  --panel: #111a33;
+  --line: #2c3f73;
+  --text: #eef3ff;
+  --muted: #b7c4e8;
+  --accent: #66d9ef;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  background: linear-gradient(160deg, #121d3b, var(--bg));
+  color: var(--text);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.2rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: rgba(12, 18, 36, 0.94);
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tab {
+  border: 1px solid #3d528f;
+  background: #17254a;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+.tab.active { border-color: var(--accent); color: var(--accent); }
+
+main { max-width: 1250px; margin: 1.2rem auto; padding: 0 1rem 2rem; }
+.page {
+  display: none;
+  background: rgba(17, 26, 51, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  min-height: 74vh;
+}
+.page.active { display: block; }
+
+h1 { margin-top: 0; }
+.lead { color: var(--muted); }
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.plan-card {
+  border: 1px solid #2f4379;
+  border-radius: 12px;
+  padding: 0.7rem;
+  background: #0f1830;
+}
+
+.plan-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #33477d;
+  min-height: 470px;
+}
+
+.plan-image {
+  width: 100%;
+  height: 470px;
+  display: block;
+  background: #fff;
+}
+
+.hotspot {
+  position: absolute;
+  border: 1px solid #50d6ef;
+  background: rgba(6, 16, 36, 0.76);
+  color: #eafaff;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.hotspot:hover { background: rgba(27, 62, 94, 0.88); }
+
+/* Positionen auf dem Lageplan (bei Bedarf feinjustieren) */
+.hotspot.stoff { left: 8%; top: 30%; }
+.hotspot.pm { right: 9%; bottom: 22%; }
+
+.viewer {
+  width: min(1100px, 95vw);
+  border: 1px solid #38549a;
+  border-radius: 12px;
+  padding: 0.6rem;
+  background: #0c1429;
+  color: var(--text);
+}
+.viewer::backdrop { background: rgba(0, 0, 0, 0.6); }
+.viewer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.viewer-head button {
+  border: 1px solid #3d528f;
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+  background: #17254a;
+  color: var(--text);
+}
+#viewerImage {
+  width: 100%;
+  height: auto;
+  max-height: 76vh;
+  object-fit: contain;
+  background: #fff;
+}
