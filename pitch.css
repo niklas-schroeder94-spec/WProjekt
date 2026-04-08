@@ -1,0 +1,128 @@
+:root {
+  --bg: #f4f8ff;
+  --surface: #ffffff;
+  --line: #d8e6ff;
+  --text: #1a2a44;
+  --muted: #5d7296;
+  --accent: #8fd3ff;
+  --accent-strong: #58b8ff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Inter", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
+  align-items: center;
+  padding: 0.95rem 1rem;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.46rem 0.85rem;
+  cursor: pointer;
+}
+.tab.active {
+  border-color: var(--accent-strong);
+  background: #eef8ff;
+  color: #0f4f79;
+}
+
+main { max-width: 1260px; margin: 1.2rem auto; padding: 0 1rem 2rem; }
+.page {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+  min-height: 74vh;
+  box-shadow: 0 8px 30px rgba(31, 86, 129, 0.07);
+}
+.page.active { display: block; }
+
+h1 { margin-top: 0; }
+.lead { color: var(--muted); }
+
+.plan-card.single {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.9rem;
+  background: #fcfeff;
+}
+
+.plan-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #cfe2ff;
+}
+
+.plan-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hotspot {
+  position: absolute;
+  border: 1px solid #98d7ff;
+  background: #ffffffeb;
+  color: #18436c;
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+.hotspot:hover { border-color: var(--accent-strong); background: #eef8ff; }
+
+.hs1 { left: 8%; top: 63%; }
+.hs2 { left: 8%; top: 23%; }
+.hs3 { right: 8%; top: 63%; }
+.hs4 { right: 8%; top: 23%; }
+
+.viewer {
+  width: min(1100px, 95vw);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.6rem;
+  background: #fff;
+  color: var(--text);
+}
+.viewer::backdrop { background: rgba(30, 52, 78, 0.35); }
+.viewer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+.viewer-head button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+  background: #fff;
+}
+#viewerImage {
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #e3eeff;
+}
