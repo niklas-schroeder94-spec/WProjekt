@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pitch Deck – Papiermaschinen-Umbau</title>
+  <link rel="stylesheet" href="pitch.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <strong>Pitch Deck</strong>
+      <span>Uni-Projekt · Papiermaschinen-Umbau</span>
+    </div>
+    <div class="controls">
+      <button id="prevBtn" aria-label="Vorherige Folie">←</button>
+      <span id="counter">1 / 10</span>
+      <button id="nextBtn" aria-label="Nächste Folie">→</button>
+      <button id="printBtn" aria-label="Als PDF drucken">PDF</button>
+    </div>
+  </header>
+
+  <main id="deck" class="deck">
+    <section class="slide active" data-title="Titel">
+      <p class="kicker">WProjekt · Universität</p>
+      <h1>Effizienzsteigerung durch Umbau der Papiermaschine</h1>
+      <p class="lead">Ein datenbasierter Plan zur Kapazitätssteigerung, Qualitätsverbesserung und nachhaltigen Produktion.</p>
+      <div class="meta">
+        <p><strong>Team:</strong> Dein Name / Teamname</p>
+        <p><strong>Datum:</strong> April 2026</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Problem">
+      <h2>1. Problemstellung</h2>
+      <ul>
+        <li>Bestehende Anlage verursacht Engpässe bei Durchsatz und Qualität.</li>
+        <li>Wartungsaufwand und Ausfallzeiten sind überdurchschnittlich hoch.</li>
+        <li>Energieverbrauch je Tonne Produkt ist zu groß.</li>
+      </ul>
+      <p class="hint">Ziel: Wirtschaftlich, technisch und ökologisch tragfähige Lösung präsentieren.</p>
+    </section>
+
+    <section class="slide" data-title="Ist-Zustand">
+      <h2>2. Ist-Zustand</h2>
+      <div class="image-grid two">
+        <figure>
+          <img src="Papiermaschine_Bestand.png" alt="Papiermaschine im Bestand" />
+          <figcaption>Papiermaschine – Bestand</figcaption>
+        </figure>
+        <figure>
+          <img src="Stoffaufbereitung_Bestand.png" alt="Stoffaufbereitung im Bestand" />
+          <figcaption>Stoffaufbereitung – Bestand</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Soll-Zustand">
+      <h2>3. Geplanter Umbau</h2>
+      <div class="image-grid two">
+        <figure>
+          <img src="Papiermaschine_Umbau.png" alt="Papiermaschine nach Umbau" />
+          <figcaption>Papiermaschine – Umbau</figcaption>
+        </figure>
+        <figure>
+          <img src="Stoffaufbereitung_Umbau.png" alt="Stoffaufbereitung nach Umbau" />
+          <figcaption>Stoffaufbereitung – Umbau</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Nutzen">
+      <h2>4. Nutzenversprechen</h2>
+      <div class="cards">
+        <article>
+          <h3>+18&nbsp;% Durchsatz</h3>
+          <p>Mehr Output bei gleicher Hallenfläche.</p>
+        </article>
+        <article>
+          <h3>-12&nbsp;% Energie</h3>
+          <p>Geringere Kosten und CO₂-Last pro Tonne.</p>
+        </article>
+        <article>
+          <h3>-20&nbsp;% Stillstand</h3>
+          <p>Stabilere Produktion und bessere Planbarkeit.</p>
+        </article>
+      </div>
+      <p class="hint">Werte als Beispiel – bitte mit euren realen Messdaten aus <code>data.xlsx</code> aktualisieren.</p>
+    </section>
+
+    <section class="slide" data-title="Wirtschaftlichkeit">
+      <h2>5. Wirtschaftlichkeit (Beispielrechnung)</h2>
+      <table>
+        <thead>
+          <tr><th>Kennzahl</th><th>Wert</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Investition</td><td>2,4 Mio. €</td></tr>
+          <tr><td>Jährlicher Mehrerlös</td><td>0,95 Mio. €</td></tr>
+          <tr><td>Jährliche Einsparung</td><td>0,38 Mio. €</td></tr>
+          <tr><td>Amortisationszeit</td><td>~1,8 Jahre</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide" data-title="Roadmap">
+      <h2>6. Umsetzungsplan</h2>
+      <ol class="timeline">
+        <li><strong>Q2/2026:</strong> Detailengineering & Ausschreibung</li>
+        <li><strong>Q3/2026:</strong> Beschaffung & Vorfertigung</li>
+        <li><strong>Q4/2026:</strong> Montage während geplanter Abstellung</li>
+        <li><strong>Q1/2027:</strong> Inbetriebnahme & Ramp-up</li>
+      </ol>
+    </section>
+
+    <section class="slide" data-title="Risiken">
+      <h2>7. Risiken & Gegenmaßnahmen</h2>
+      <table>
+        <thead>
+          <tr><th>Risiko</th><th>Auswirkung</th><th>Maßnahme</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lieferverzug</td><td>Terminverschiebung</td><td>Dual Sourcing, Pufferzeiten</td></tr>
+          <tr><td>Anlaufprobleme</td><td>Qualitätsverlust</td><td>Stufenweise Hochfahrt, Pilotbetrieb</td></tr>
+          <tr><td>Kostenanstieg</td><td>Budgetüberschreitung</td><td>Fixpreisanteile, Controlling</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide" data-title="Anhang">
+      <h2>8. Anlagen & Quellen</h2>
+      <ul>
+        <li><a href="PM_Gelände.pdf" target="_blank" rel="noopener">Geländeplan (PDF)</a></li>
+        <li><a href="data.xlsx" target="_blank" rel="noopener">Datengrundlage (Excel)</a></li>
+      </ul>
+      <p class="hint">Tipp: In der finalen Abgabe alle Kennzahlen mit Quellenangabe versehen.</p>
+    </section>
+
+    <section class="slide" data-title="Schluss">
+      <h2>9. Fazit</h2>
+      <p class="lead">Der Umbau ist technisch machbar, wirtschaftlich attraktiv und unterstützt die Nachhaltigkeitsziele.</p>
+      <ul>
+        <li>Kurze Amortisation</li>
+        <li>Messbare Qualitäts- und Effizienzgewinne</li>
+        <li>Skalierbares Konzept für weitere Optimierungen</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-title="Q&A">
+      <h2>10. Fragen?</h2>
+      <p class="lead">Danke für eure Aufmerksamkeit.</p>
+      <p>Kontakt: <em>dein.name@uni.de</em></p>
+    </section>
+  </main>
+
+  <script src="pitch.js"></script>
+</body>
+</html>
