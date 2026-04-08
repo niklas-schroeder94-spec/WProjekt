@@ -9,6 +9,7 @@
 </head>
 <body>
   <header class="topbar">
+    <div class="progress"><span id="progressBar"></span></div>
     <div class="project-title">Barrierepapier — Konzept 1</div>
     <nav class="dot-nav" id="dotNav" aria-label="Slide Navigation"></nav>
     <div class="nav-actions">
@@ -18,7 +19,16 @@
   </header>
 
   <main class="deck">
-    <section class="slide active" data-title="Werksgelände">
+    <section class="slide active hero-slide" data-title="Die Zukunft der Verpackung">
+      <h1>Die Zukunft der Verpackung</h1>
+      <div class="hero-grid">
+        <article class="card"><h3>Problem: Plastik / Verbund</h3><p>Hohe fossile Abhängigkeit, schwierige Rezyklierbarkeit, steigender regulatorischer Druck durch PPWR und CO₂-Kosten.</p></article>
+        <article class="card"><h3>Lösung: Bio-Polymer Barrierepapier</h3><p>Rezyklierbare, mineralölfreie und lebensmittelkonforme Alternative auf Faserbasis mit klar messbarer CO₂- und Ressourceneinsparung.</p></article>
+      </div>
+      <p class="so-what">Kernaussage: Konzept 1 verbindet industrielle Machbarkeit mit klarer Nachhaltigkeitswirkung.</p>
+    </section>
+
+    <section class="slide" data-title="Werksgelände">
       <h1>Werksgelände</h1>
       <p class="sub">Umbau Konzept 1 — Standortübersicht</p>
       <div class="plan-wrap">
@@ -59,7 +69,7 @@
         <article class="card"><p class="kpi pos">+15,4</p><p class="meta">OPEX Δ Energie (Mio. €/a)</p></article>
         <article class="card"><p class="kpi pos">+75,1</p><p class="meta">OPEX Δ Rohstoff (Mio. €/a)</p></article>
       </div>
-      <div class="card"><h3>Kumulierter Cashflow über 25 Jahre</h3><div class="chart-wrap"><canvas id="cashflowChart"></canvas></div></div>
+      <div class="card"><h3>Kumulierter Cashflow über 25 Jahre</h3><div class="scenario-toggle"><button class="pill active" data-scenario="standard">Standard</button><button class="pill" data-scenario="co2">CO₂-Steuer Impact</button></div><div class="chart-wrap"><canvas id="cashflowChart"></canvas></div></div>
       <div class="card"><h3>OPEX-Struktur Bestand vs. Umbau (Mio. €/a)</h3><div class="chart-wrap opex"><canvas id="opexChart"></canvas></div><p class="meta right">Gesamt: Bestand 208 Mio. € | Umbau 234 Mio. €</p></div>
       <details><summary>CAPEX-Aufschlüsselung (Top-Positionen)</summary><table><tr><td>Biomassekraftwerk</td><td>124,4 Mio. €</td></tr><tr><td>Papiermaschine (Umbau)</td><td>83,1 Mio. €</td></tr><tr><td>Stoffaufbereitung</td><td>32,9 Mio. €</td></tr><tr><td>Streichmassenaufbereitung</td><td>8,0 Mio. €</td></tr><tr><th>Gesamt</th><th>248,4 Mio. €</th></tr></table></details>
       <details><summary>LCOE Biomassekraftwerk</summary><div class="kpi-grid two"><article class="card"><p class="kpi">40,3</p><p class="meta">Szenario A €/MWh (−50 % vs. Markt)</p></article><article class="card"><p class="kpi">53,3</p><p class="meta">Szenario B €/MWh (−37 % vs. Markt)</p></article></div><p class="meta">Marktpreis Referenz: 80–100 €/MWh · NPV Szenario A: +209 Mio. €</p></details>
@@ -70,7 +80,7 @@
     <section class="slide" data-title="Product Carbon Footprint">
       <h1>Product Carbon Footprint</h1>
       <p class="sub">Cradle-to-Gate | Funktionelle Einheit: 1 m² Barrierepapier</p>
-      <div class="banner"><p class="hero">−52,7 %</p><p class="sub">PCF-Reduktion gegenüber Bestand</p><span class="success">✓ Ziel ≥ 50% erreicht</span></div>
+      <div class="banner"><p class="hero">−52,7 %</p><p class="sub">PCF-Reduktion gegenüber Bestand</p><span class="success">✓ Ziel ≥ 50% erreicht</span><p class="impact">CO₂-Einsparung/Jahr: <strong id="impactCounter">0</strong> t</p></div>
       <div class="kpi-grid three">
         <article class="card"><p class="kpi">0,071</p><p class="meta">PCF Bestand (kg CO₂e/m²)</p></article>
         <article class="card"><p class="kpi">0,034</p><p class="meta">PCF Umbau (kg CO₂e/m²)</p></article>
@@ -86,7 +96,7 @@
       <h1>Slot-Die Barrierebeschichtung</h1>
       <p class="sub">10-Schicht-Sprühtechnologie — wasserbasiert, mineralölfrei, recyclebar</p>
       <div class="split">
-        <article class="card"><p class="meta">50 g/m² gesamt</p><div class="layers"><div style="--h:8%;--c:rgba(37,99,235,.3)">Top Coat hydrophob · 0,8 g/m²</div><div style="--h:14%;--c:rgba(239,159,39,.35)">Barrierestrich oben · 4,0 g/m²</div><div style="--h:10%;--c:rgba(93,202,165,.25)">Primer oben · 2,0 g/m²</div><div style="--h:44%;--c:rgba(255,255,255,.08)">Recyclingfaser · 38,0 g/m²</div><div style="--h:10%;--c:rgba(93,202,165,.25)">Primer unten · 2,0 g/m²</div><div style="--h:14%;--c:rgba(239,159,39,.35)">Barrierestrich unten · 4,0 g/m²</div></div></article>
+        <article class="card"><p class="meta">50 g/m² gesamt</p><div class="layers"><div style="--h:8%;--c:rgba(37,99,235,.3)"><span class="layer-item" data-tip="Hydrophobie, Fettabweisung, Oberflächenhärte">Top Coat hydrophob · 0,8 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="MOH+O₂-Barriere durch dichte Polymermatrix">Barrierestrich oben · 4,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Porenfüller für homogene Schichtbildung">Primer oben · 2,0 g/m²</span></div><div style="--h:44%;--c:rgba(255,255,255,.08)"><span class="layer-item" data-tip="Trägerschicht AP 04.01.01 mit hoher Verfügbarkeit">Recyclingfaser · 38,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Haftvermittler zur Rückseitenstabilisierung">Primer unten · 2,0 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="Sauerstoffbarriere & Mineralölstopp auf Rückseite">Barrierestrich unten · 4,0 g/m²</span></div></div></article>
         <article class="card"><h3>Präzisionsbeschichtung ohne Kontakt</h3><p>Das Slot-Die-Verfahren trägt wasserbasierte Funktionsschichten berührungslos und hochpräzise auf. Geeignet für Biopolymer-Dispersionen wie PHA, Chitosan und PVOH — mit homogener Schichtdicke unter 1 μm Toleranz.</p><div class="link-buttons"><a class="pill" href="#">Slot-Die CFD Simulation (Case Study)</a><a class="pill" href="#">Basics of Slot Die Coating — next Machinery</a><a class="pill" href="#">Chitosan Slot-Die — Springer Nature</a></div></article>
       </div>
       <h3>Marktpositionierung — Top-3 Fahrweisen (85 % der Produktion)</h3>
@@ -116,9 +126,17 @@
       <details><summary>Energiemanagement: Bestand vs. Umbau</summary><p>Bestand: Kohlestaubfeuerung, 80% externer Strom, Gas für Yankee-Hauben. Umbau: Biomassekraftwerk, 0% ext. Strom, kein Gas, 14 MW IR-Strahler.</p><p class="meta">CO₂-Einsparung Energie: ~50.000 t CO₂/a</p></details>
       <p class="so-what">Kernaussage: Wasser- und Lieferketteneffekte liefern sofort messbaren Nachhaltigkeitsnutzen.</p>
     </section>
+
+    <section class="slide" data-title="Anhang & Download">
+      <h1>Anhang & Download</h1>
+      <div class="card qr">
+        <div class="qr-box">QR</div>
+        <p>Download Whitepaper / Datentabellen (Platzhalter für QR-Code).</p>
+      </div>
+    </section>
   </main>
 
-  <footer class="foot"><span>DHBW Gernsbach | Seminar Nachhaltigkeit & Innovation | 2026</span><span id="slideCounter">1 / 5</span></footer>
+  <footer class="foot"><span>DHBW Gernsbach | Seminar Nachhaltigkeit & Innovation | 2026</span><span id="slideCounter">1 / 7</span></footer>
   <script src="pitch.js"></script>
 </body>
 </html>

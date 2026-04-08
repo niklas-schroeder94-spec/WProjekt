@@ -22,6 +22,8 @@ body {
   background: rgba(10,10,10,.85); backdrop-filter: blur(20px);
 }
 .project-title { font-size: 14px; color: var(--sub); }
+.progress{position:absolute;left:0;right:0;top:0;height:2px;background:transparent;}
+.progress span{display:block;height:100%;width:0;background:#2563eb;transition:width .4s var(--ease);}
 .dot-nav { display: flex; gap: 8px; justify-content: center; }
 .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; }
 .dot.active { background: #fff; }
@@ -34,8 +36,8 @@ body {
 .pill:hover { background: rgba(255,255,255,.15); }
 
 .deck { max-width: 1200px; margin: 0 auto; padding: 30px 24px 90px; }
-.slide { display: none; min-height: calc(100vh - 120px); padding: 20px 0; }
-.slide.active { display: block; }
+.slide { display: block; min-height: calc(100vh - 120px); padding: 20px 0; opacity: 0; transform: translateY(14px); max-height: 0; overflow: hidden; pointer-events: none; transition: opacity .4s var(--ease), transform .4s var(--ease), max-height .4s var(--ease); }
+.slide.active { opacity: 1; transform: translateY(0); max-height: 12000px; pointer-events: auto; }
 .slide > * + * { margin-top: 24px; }
 h1 { font-size: clamp(56px, 7vw, 72px); font-weight: 200; margin: 20px 0 8px; text-align: center; }
 .sub { font-size: 20px; color: var(--sub); text-align: center; margin: 0 0 34px; }
@@ -49,6 +51,9 @@ p { color: var(--body); font-size: 16px; }
 .building:hover rect { fill: rgba(255,255,255,.1); }
 .building text { fill: #d4d4d8; font-size: 10px; }
 .building.interactive rect { fill: rgba(37,99,235,.25); stroke: #2563eb; stroke-width: 1.5; cursor: pointer; }
+.building.interactive:hover rect{filter: drop-shadow(0 0 6px rgba(37,99,235,.75));}
+.building.interactive:hover text{animation:pulseText 1.4s infinite;}
+@keyframes pulseText{0%,100%{opacity:1;}50%{opacity:.55;}}
 .pulse { fill: none; stroke: #2563eb; stroke-width: 1.2; animation: pulse 2s infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes pulse { 0% {transform: scale(1); opacity:1;} 50% {transform: scale(1.05); opacity:.6;} 100% {transform: scale(1); opacity:1;} }
 .chips { display: flex; gap: 12px; margin: 12px 0; }
@@ -65,7 +70,7 @@ p { color: var(--body); font-size: 16px; }
 .kpi-grid { display: grid; gap: 14px; margin: 12px 0 22px; }
 .kpi-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .kpi-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.card { background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+.card { background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 18px; backdrop-filter: blur(10px); }
 .kpi { font-size: clamp(48px, 6vw, 64px); line-height: 1; font-weight: 200; margin: 0 0 8px; color: #fff; }
 .kpi.pos { color: #30D158; }
 .meta { font-size: 13px; color: var(--sub); margin: 0; }
@@ -124,4 +129,21 @@ td, th { text-align: left; padding: 8px 0; border-bottom: 1px solid var(--line);
   body { background: #000; }
   .slide { display: block !important; page-break-after: always; min-height: auto; }
   .deck { max-width: none; padding: 0; }
+}
+
+
+.scenario-toggle { display: flex; gap: 8px; margin-bottom: 10px; }
+.scenario-toggle .pill.active { background: rgba(37,99,235,.35); border-color: #2563eb; }
+.impact { text-align: center; color: #a1a1aa; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.layer-item { display: block; }
+.layer-tooltip { position: fixed; z-index: 50; background: rgba(12,12,12,.92); border: 1px solid rgba(255,255,255,.18); color: #fff; padding: 8px 10px; border-radius: 10px; font-size: 12px; max-width: 240px; pointer-events: none; opacity: 0; transition: opacity .2s var(--ease); }
+.qr { display: grid; justify-items: center; text-align: center; }
+.qr-box { width: 120px; height: 120px; border: 1px solid var(--line); display: grid; place-items: center; border-radius: 12px; font-weight: 600; }
+
+details { overflow-x: auto; }
+table { min-width: 540px; }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
 }
