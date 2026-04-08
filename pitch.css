@@ -1,48 +1,18 @@
 :root {
-  --bg: #0d1326;
-  --panel: #111a33;
-  --line: #2c3f73;
-  --text: #eef3ff;
-  --muted: #b7c4e8;
-  --accent: #66d9ef;
-  --body-grad-a: #121d3b;
-  --body-grad-b: #0d1326;
-  --topbar-bg: rgba(12, 18, 36, 0.94);
-  --page-bg: rgba(17, 26, 51, 0.95);
-  --card-bg: #0f1830;
-  --tab-bg: #17254a;
-  --tab-border: #3d528f;
-  --viewer-bg: #0c1429;
-  --card-border: #2f4379;
-  --wrap-border: #33477d;
-  --viewer-border: #38549a;
-}
-
-body[data-theme='light'] {
-  --bg: #f4f7ff;
-  --panel: #ffffff;
-  --line: #cfdaef;
-  --text: #0f1e3f;
-  --muted: #4d628e;
-  --accent: #2353d8;
-  --body-grad-a: #f3f7ff;
-  --body-grad-b: #e8efff;
-  --topbar-bg: rgba(255, 255, 255, 0.95);
-  --page-bg: rgba(255, 255, 255, 0.97);
-  --card-bg: #f5f8ff;
-  --tab-bg: #f5f8ff;
-  --tab-border: #a9badb;
-  --viewer-bg: #ffffff;
-  --card-border: #cfdaef;
-  --wrap-border: #cfdaef;
-  --viewer-border: #cfdaef;
+  --bg: #f4f8ff;
+  --surface: #ffffff;
+  --line: #d8e6ff;
+  --text: #1a2a44;
+  --muted: #5d7296;
+  --accent: #8fd3ff;
+  --accent-strong: #58b8ff;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: Inter, Segoe UI, Arial, sans-serif;
-  background: linear-gradient(160deg, var(--body-grad-a), var(--body-grad-b));
+  font-family: "Segoe UI", "Inter", Arial, sans-serif;
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -52,117 +22,107 @@ body {
   z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem 1.2rem;
+  gap: 0.8rem 1rem;
   align-items: center;
-  padding: 0.9rem 1rem;
-  background: var(--topbar-bg);
+  padding: 0.95rem 1rem;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
 
 .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .tab {
-  border: 1px solid var(--tab-border);
-  background: var(--tab-bg);
+  border: 1px solid var(--line);
+  background: #fff;
   color: var(--text);
-  border-radius: 10px;
-  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  padding: 0.46rem 0.85rem;
   cursor: pointer;
 }
-.tab.active { border-color: var(--accent); color: var(--accent); }
-.theme-toggle {
-  margin-left: auto;
-  border: 1px solid var(--tab-border);
-  background: var(--tab-bg);
-  color: var(--text);
-  border-radius: 10px;
-  padding: 0.45rem 0.7rem;
-  cursor: pointer;
+.tab.active {
+  border-color: var(--accent-strong);
+  background: #eef8ff;
+  color: #0f4f79;
 }
 
-main { max-width: 1250px; margin: 1.2rem auto; padding: 0 1rem 2rem; }
+main { max-width: 1260px; margin: 1.2rem auto; padding: 0 1rem 2rem; }
 .page {
   display: none;
-  background: var(--page-bg);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 18px;
   padding: 1rem;
   min-height: 74vh;
+  box-shadow: 0 8px 30px rgba(31, 86, 129, 0.07);
 }
 .page.active { display: block; }
 
 h1 { margin-top: 0; }
 .lead { color: var(--muted); }
 
-.plan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1rem;
-}
-
-.plan-card {
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 0.7rem;
-  background: var(--card-bg);
+.plan-card.single {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.9rem;
+  background: #fcfeff;
 }
 
 .plan-wrap {
   position: relative;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid var(--wrap-border);
-  min-height: 470px;
+  border: 1px solid #cfe2ff;
 }
 
 .plan-image {
   width: 100%;
-  height: 470px;
+  height: auto;
   display: block;
-  background: #fff;
 }
 
 .hotspot {
   position: absolute;
-  border: 1px solid #50d6ef;
-  background: rgba(6, 16, 36, 0.76);
-  color: #eafaff;
+  border: 1px solid #98d7ff;
+  background: #ffffffeb;
+  color: #18436c;
   padding: 0.45rem 0.6rem;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 0.92rem;
 }
-.hotspot:hover { background: rgba(27, 62, 94, 0.88); }
+.hotspot:hover { border-color: var(--accent-strong); background: #eef8ff; }
 
-/* Positionen auf dem Lageplan (bei Bedarf feinjustieren) */
-.hotspot.stoff { left: 8%; top: 30%; }
-.hotspot.pm { right: 9%; bottom: 22%; }
+.hs1 { left: 8%; top: 63%; }
+.hs2 { left: 8%; top: 23%; }
+.hs3 { right: 8%; top: 63%; }
+.hs4 { right: 8%; top: 23%; }
 
 .viewer {
   width: min(1100px, 95vw);
-  border: 1px solid var(--viewer-border);
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
   padding: 0.6rem;
-  background: var(--viewer-bg);
+  background: #fff;
   color: var(--text);
 }
-.viewer::backdrop { background: rgba(0, 0, 0, 0.6); }
+.viewer::backdrop { background: rgba(30, 52, 78, 0.35); }
 .viewer-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.65rem;
 }
 .viewer-head button {
-  border: 1px solid #3d528f;
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 0.35rem 0.55rem;
   cursor: pointer;
-  background: #17254a;
-  color: var(--text);
+  background: #fff;
 }
 #viewerImage {
   width: 100%;
-  height: auto;
   max-height: 76vh;
   object-fit: contain;
-  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e3eeff;
 }

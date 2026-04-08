@@ -15,34 +15,22 @@
       <button class="tab" data-target="technologie">3) Technologie</button>
       <button class="tab" data-target="nachhaltigkeit">4) Nachhaltigkeit</button>
     </nav>
-    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="true">
-      🌙 Dark Mode
-    </button>
   </header>
 
   <main>
     <section id="hauptseite" class="page active">
       <h1>Bestand / Umbau – Lageplan</h1>
-      <p class="lead">Klicke direkt auf <strong>Stoffaufbereitung</strong> oder <strong>Papiermaschine</strong>, um die zugehörigen Bilder zu öffnen.</p>
+      <p class="lead">Cleanes Überblicksbild mit beiden Zuständen. Klicke auf die Marker für Detailansichten.</p>
 
-      <div class="plan-grid">
-        <article class="plan-card">
-          <h2>Bestand</h2>
-          <div class="plan-wrap">
-            <object data="PM_Gelände.pdf#page=1&zoom=120" type="application/pdf" class="plan-image" aria-label="Lageplan Bestand"></object>
-            <button class="hotspot stoff" data-title="Bestand – Stoffaufbereitung" data-image="Stoffaufbereitung_Bestand.png">Stoffaufbereitung</button>
-            <button class="hotspot pm" data-title="Bestand – Papiermaschine" data-image="Papiermaschine_Bestand.png">Papiermaschine</button>
-          </div>
-        </article>
+      <div class="plan-card single">
+        <div class="plan-wrap">
+          <img src="lageplan_combined.svg" alt="Lageplan mit Bestand und Umbau" class="plan-image" />
 
-        <article class="plan-card">
-          <h2>Umbau</h2>
-          <div class="plan-wrap">
-            <object data="PM_Gelände.pdf#page=1&zoom=120" type="application/pdf" class="plan-image" aria-label="Lageplan Umbau"></object>
-            <button class="hotspot stoff" data-title="Umbau – Stoffaufbereitung" data-image="Stoffaufbereitung_Umbau.png">Stoffaufbereitung</button>
-            <button class="hotspot pm" data-title="Umbau – Papiermaschine" data-image="Papiermaschine_Umbau.png">Papiermaschine</button>
-          </div>
-        </article>
+          <button class="hotspot hs1" data-title="Bestand – Stoffaufbereitung" data-image="Stoffaufbereitung_Bestand.png">Bestand · Stoffaufbereitung</button>
+          <button class="hotspot hs2" data-title="Bestand – Papiermaschine" data-image="Papiermaschine_Bestand.png">Bestand · Papiermaschine</button>
+          <button class="hotspot hs3" data-title="Umbau – Stoffaufbereitung" data-image="Stoffaufbereitung_Umbau.png">Umbau · Stoffaufbereitung</button>
+          <button class="hotspot hs4" data-title="Umbau – Papiermaschine" data-image="Papiermaschine_Umbau.png">Umbau · Papiermaschine</button>
+        </div>
       </div>
     </section>
 
