@@ -146,14 +146,28 @@ function initScenarioToggle() {
     btn.addEventListener('click', () => {
       scenario = btn.dataset.scenario;
       document.querySelectorAll('[data-scenario]').forEach((b) => b.classList.toggle('active', b === btn));
+      const values = getScenarioCashflow();
+      updateBreakEvenLabel(values);
       if (charts.cashflow) {
-        charts.cashflow.data.datasets[0].data = getScenarioCashflow();
+        charts.cashflow.data.datasets[0].data = values;
         charts.cashflow.update();
       }
     });
   });
 }
 
+
+
+function estimateBreakEven(values) {
+  const idx = values.findIndex((v) => v >= 0);
+  return idx === -1 ? '>25' : String(idx + 1);
+}
+
+function updateBreakEvenLabel(values) {
+  const label = document.getElementById('breakEvenLive');
+  if (!label) return;
+  label.textContent = `Aktueller Break-Even: Jahr ${estimateBreakEven(values)}`;
+}
 
 function getScenarioCashflow() {
   const base = scenario === 'co2' ? cashflowCo2 : cashflowStandard;
@@ -178,8 +192,10 @@ function initConfigurator() {
     energyVal.textContent = `${scenarioInputs.energy}%`;
     co2Val.textContent = `${scenarioInputs.co2} €/t`;
     marketVal.textContent = `${scenarioInputs.market}%`;
+    const values = getScenarioCashflow();
+    updateBreakEvenLabel(values);
     if (charts.cashflow) {
-      charts.cashflow.data.datasets[0].data = getScenarioCashflow();
+      charts.cashflow.data.datasets[0].data = values;
       charts.cashflow.update();
     }
   };
@@ -257,8 +273,10 @@ function initSlotDieAnimationControl() {
 function initScrollStory() {
   let lock = false;
   window.addEventListener('wheel', (e) => {
-    if (lock) return;
-    if (Math.abs(e.deltaY) < 25) return;
+    if (lock || Math.abs(e.deltaY) < 25) return;
+    const atTop = window.scrollY <= 0;
+    const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+    if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) return;
     lock = true;
     showSlide(current + (e.deltaY > 0 ? 1 : -1));
     setTimeout(() => (lock = false), 420);
@@ -274,7 +292,7 @@ function revealOnSlide() {
 }
 
 function lazyInitCharts() {
-  if (current === 2 && !charts.cashflow && window.Chart) {
+  if (slides[current]?.dataset.title === "Investition & Wirtschaftlichkeit" && !charts.cashflow && window.Chart) {
     const years = Array.from({ length: 25 }, (_, i) => i + 1);
     charts.cashflow = new Chart(document.getElementById('cashflowChart'), {
       type: 'line',
@@ -286,6 +304,8 @@ function lazyInitCharts() {
       },
       plugins: [zeroLinePlugin]
     });
+
+    updateBreakEvenLabel(getScenarioCashflow());
 
     charts.opex = new Chart(document.getElementById('opexChart'), {
       type: 'bar',
@@ -301,14 +321,14 @@ function lazyInitCharts() {
     });
   }
 
-  if (current === 3 && !charts.pcf && window.Chart) {
+  if (slides[current]?.dataset.title === "Product Carbon Footprint" && !charts.pcf && window.Chart) {
     charts.pcf = new Chart(document.getElementById('pcfChart'), {
       type: 'bar',
       data: {
         labels: ['Bestand', 'Hebel Energie', 'Hebel Rohstoffe', 'Umbau'],
         datasets: [
-          { label: 'Floater', data: [0, 0.071, 0.05576, 0], backgroundColor: 'rgba(0,0,0,0)', stack: 'combined' },
-          { label: 'Impact', data: [0.071, -0.01524, -0.02204, 0.034], backgroundColor: ['rgba(255,255,255,.7)', 'rgba(37,99,235,.55)', 'rgba(37,99,235,.85)', 'rgba(255,255,255,.9)'], stack: 'combined' }
+          { label: 'Floater', data: [0, 0.071, 0.05576, 0.034], backgroundColor: 'rgba(0,0,0,0)', stack: 'combined' },
+          { label: 'Impact', data: [0.071, -0.01524, -0.02204, 0], backgroundColor: ['rgba(255,255,255,.7)', 'rgba(37,99,235,.55)', 'rgba(37,99,235,.85)', 'rgba(255,255,255,.9)'], stack: 'combined' }
         ]
       },
       options: { plugins: { legend: { labels: { color: '#d4d4d8' } }, tooltip: { enabled: false, external: externalTooltipHandler } }, scales: { x: { ticks: { color: '#a1a1aa' }, grid: { display: false } }, y: { ticks: { color: '#a1a1aa' }, grid: { display: false } } } }

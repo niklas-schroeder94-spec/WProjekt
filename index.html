@@ -91,6 +91,7 @@
         <label>Energiepreis-Entwicklung: <span id="energyVal">0%</span><input id="energyRange" type="range" min="-30" max="30" value="0"/></label>
         <label>CO₂-Zertifikatspreis: <span id="co2Val">150 €/t</span><input id="co2Range" type="range" min="50" max="300" value="150"/></label>
         <label>Marktpreis Kunststoff-Referenz: <span id="marketVal">100%</span><input id="marketRange" type="range" min="70" max="140" value="100"/></label>
+        <p class="meta" id="breakEvenLive">Aktueller Break-Even: Jahr 13</p>
       </div>
 
       <p class="so-what">Kernaussage: Break-even wird im Jahr 13 erreicht, danach skaliert der positive Cashflow robust.</p>
@@ -118,16 +119,6 @@
         <article class="card"><p class="meta">50 g/m² gesamt</p><div class="layers"><div style="--h:8%;--c:rgba(37,99,235,.3)"><span class="layer-item" data-tip="Hydrophobie, Fettabweisung, Oberflächenhärte">Top Coat hydrophob · 0,8 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="MOH+O₂-Barriere durch dichte Polymermatrix">Barrierestrich oben · 4,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Porenfüller für homogene Schichtbildung">Primer oben · 2,0 g/m²</span></div><div style="--h:44%;--c:rgba(255,255,255,.08)"><span class="layer-item" data-tip="Trägerschicht AP 04.01.01 mit hoher Verfügbarkeit">Recyclingfaser · 38,0 g/m²</span></div><div style="--h:10%;--c:rgba(93,202,165,.25)"><span class="layer-item" data-tip="Haftvermittler zur Rückseitenstabilisierung">Primer unten · 2,0 g/m²</span></div><div style="--h:14%;--c:rgba(239,159,39,.35)"><span class="layer-item" data-tip="Sauerstoffbarriere & Mineralölstopp auf Rückseite">Barrierestrich unten · 4,0 g/m²</span></div></div></article>
         <article class="card"><h3>Präzisionsbeschichtung ohne Kontakt</h3><p>Das Slot-Die-Verfahren trägt wasserbasierte Funktionsschichten berührungslos und hochpräzise auf. Geeignet für Biopolymer-Dispersionen wie PHA, Chitosan und PVOH — mit homogener Schichtdicke unter 1 μm Toleranz.</p><div class="link-buttons"><a class="pill" href="#">Slot-Die CFD Simulation (Case Study)</a><a class="pill" href="#">Basics of Slot Die Coating — next Machinery</a><a class="pill" href="#">Chitosan Slot-Die — Springer Nature</a></div></article>
       </div>
-      
-      <div class="card microscope-card">
-        <h3>Mikroskop-Ansicht (Deep Dive)</h3>
-        <p class="meta">Bewege die Lupe über die Papieroberfläche, um den 3D-Querschnitt der Barrierestruktur zu sehen.</p>
-        <div id="microscope" class="microscope">
-          <div class="paper-surface"></div>
-          <div id="lens" class="lens"><div class="zoom-layer"></div></div>
-        </div>
-      </div>
-
       
       <div class="card slotdie-anim-card">
         <h3>Slot-Die Coating — Technische Animation</h3>
@@ -188,18 +179,22 @@
       <details><summary>Vollständige Wasserbilanz</summary><table><tr><td>Abwasser zur Behandlung</td><td>8,5 m³/t</td><td>Hauptabstrom</td></tr><tr><td>Verdunstung</td><td>2,2 m³/t</td><td>thermischer Verlust</td></tr><tr><td>Produktfeuchte</td><td>0,05 m³/t</td><td>Austrag im Produkt</td></tr><tr><td>Schlamm/Rejekte</td><td>0,5 m³/t</td><td>Faseraustrag</td></tr><tr><td>Kühlwasserverluste</td><td>0,75 m³/t</td><td>nicht rückführbar</td></tr><tr><td>Interne Kreislaufwasser</td><td>150 m³/t</td><td>direkt rückführbar</td></tr></table></details>
       <details><summary>Energiemanagement: Bestand vs. Umbau</summary><p>Bestand: Kohlestaubfeuerung, 80% externer Strom, Gas für Yankee-Hauben. Umbau: Biomassekraftwerk, 0% ext. Strom, kein Gas, 14 MW IR-Strahler.</p><p class="meta">CO₂-Einsparung Energie: ~50.000 t CO₂/a</p></details>
       
+      <p class="so-what">Kernaussage: Wasser- und Lieferketteneffekte liefern sofort messbaren Nachhaltigkeitsnutzen.</p>
+    </section>
+
+    <section class="slide" data-title="Anhang & Download">
+      <h1>Anhang & Download</h1>
+            <div class="card microscope-card">
+        <h3>Mikroskop-Ansicht (Deep Dive)</h3>
+        <p class="meta">Bewege die Lupe über die Papieroberfläche, um den 3D-Querschnitt der Barrierestruktur zu sehen.</p>
+        <div id="microscope" class="microscope"><div class="paper-surface"></div><div id="lens" class="lens"><div class="zoom-layer"></div></div></div>
+      </div>
       <div class="card bend-test">
         <h3>Physische Simulation: Biege-Test</h3>
         <p class="meta">Ziehe den Regler: selbst bei starker Faltung bleibt die Barriere stabil.</p>
         <input id="bendRange" type="range" min="0" max="100" value="0"/>
         <div class="paper-wrap"><div id="paperSheet" class="paper-sheet">KIT-Integrität <span id="kitVal">100%</span></div></div>
       </div>
-
-      <p class="so-what">Kernaussage: Wasser- und Lieferketteneffekte liefern sofort messbaren Nachhaltigkeitsnutzen.</p>
-    </section>
-
-    <section class="slide" data-title="Anhang & Download">
-      <h1>Anhang & Download</h1>
       <div class="card qr">
         <div class="qr-box">QR</div>
         <p>Download Whitepaper / Datentabellen (Platzhalter für QR-Code).</p>
